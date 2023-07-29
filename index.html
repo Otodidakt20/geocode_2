@@ -8,6 +8,9 @@
     <title>geocode</title>
 </head>
 <body>
+    <div class="container">
+    <div id="formatted-address"></div>
+</div>
     <script>
         //call geocode
         geocode()
@@ -24,7 +27,20 @@
 
                 //formatted adresss
                 console.log(response.data.results[0].geometry.location)
-                 
+                var formattedAddress=response.data.results[0].formatted_address
+                var formattedAdressOutput=`
+                <ul class="list-group">
+                    <li class="list-group-item">${formattedAddress}</li>    
+                </ul>
+                `;
+
+                //adress components
+
+                var addressComponents =response.data.results[0].address_componensts
+                var addressComponentsOutput= '<ul class="list-group">'
+                //output to app
+                document.getElementById('formatted-address').innerHTML=formattedAdressOutput
+
             }).catch(function(error){
                 console.log(error)
             })
